@@ -15,7 +15,7 @@
 </head>
 <body>
 
-<h2> Updating @{restaurant.name}</h2>
+<h2> Updating ${restaurant.name}</h2>
 
 <form action="updateRestaurant.do" method = "POST">
 

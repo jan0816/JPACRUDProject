@@ -45,37 +45,25 @@ public class RestaurantController {
 		return "addRestaurant";
 	}
 
-	@RequestMapping(path = "updateDisplay.do", method = RequestMethod.POST)
-	public ModelAndView updateRestaurant(@RequestParam("restaurant") int id) {
-		Restaurant restaurant = dao.findbyId(id);
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("restaurant", restaurant);
-		mv.setViewName("updateRestaurant");
-		return mv;
+	@RequestMapping(path = "updateRestaurant.do")
+	public String updateRestaurant(@RequestParam("id") int id, Model model) {
+		Restaurant restaurantUpdate = dao.findbyId(id);
+		model.addAttribute("restaurant", restaurantUpdate);
+		return "updateRestaurant";
 	}
-
-
-//	@RequestMapping(path = "updateRestaurant.do", method = RequestMethod.POST)
-//	public ModelAndView updateRestaurant(Restaurant restaurant) {
-//		ModelAndView mv = new ModelAndView();
-//		System.out.println(restaurant);
-//		Restaurant restaurantDetails = dao.updateRestaurant(restaurant, restaurant.getId());
-//		System.out.println("*************" + restaurantDetails);
-//		mv.addObject("restaurant", restaurantDetails);
-//		mv.setViewName("updateRestaurant");
-//		return mv;
-//	}
-	@RequestMapping(path = "updateRestaurant.do", method = RequestMethod.POST)
-	public String updateRestaurant(@RequestParam("id") int id, Restaurant restaurant) {
-		dao.updateRestaurant(restaurant, id);
-		return "updateDisplay";
+	
+	@RequestMapping(path = "updateDisplay.do", method = RequestMethod.POST)
+	public String updatedRestaurant(@ModelAttribute("restaurant") Restaurant restaurant) {
+		dao.updateRestaurant(restaurant, restaurant.getId());
+		return "redirect:/";
+	
 	}
 
 	@RequestMapping(path = "delete.do", method = RequestMethod.POST)
 	public String deleteRestaurant(@RequestParam("restaurant") int id) {
 		Restaurant restaurant = dao.findbyId(id);
 		dao.deleteRestaurant(restaurant);
-		return "index";
+		return "delete";
 	}
 
 }

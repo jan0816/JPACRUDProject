@@ -14,52 +14,91 @@
 </head>
 <body>
 
+	<div id="carouselExampleIndicators" class="carousel slide"
+		data-ride="carousel">
+		<ol class="carousel-indicators">
+			<li data-target="#carouselExampleIndicators" data-slide-to="0"
+				class="active"></li>
+			<li data-target="#carouselExampleIndicators" data-slide-to="1"
+				class="active"></li>
+		</ol>
 
-	<h1 align="center">2020 JAMES BEARD</h1>
-	<h3 align="center">Colorado Nominations</h3>
+		<div class="carousel-inner">
+			<div class="carousel-item active">
+				<img class="d-block w-100" src="images/jamesbeardfoundation"
+					alt="James Beard Foundation">
+			</div>
+			<div class="carousel-item">
+				<img class="d-block w-100" src="images/Beckon.jpg"
+					alt="Beckon, Denver, CO">
+			</div>
+		</div>
+		<a class="carousel-control-prev" href="#carouselExampleIndicators"
+			role="button" data-slide="prev"> <span
+			class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+			class="sr-only">Previous</span>
+		</a> <a class="carousel-control-next" href="#carouselExampleIndicators"
+			role="button" data-slide="next"> <span
+			class="carousel-control-next-icon" aria-hidden="true"></span> <span
+			class="sr-only">Next</span>
+		</a>
 
-	<form action="listAllNominations.do" method="GET" class="form">
-		<input type="submit" value="List All Nominations" class="form-control" />
-	</form>
-	<form action="addRestaurant.do" method="POST" class="form">
-		<input type="submit" border="10" value="Add Restaurant" class="form-control" />
-	</form>
-	<form action="updateRestaurant.do" method="POST" class="form">
-		<input type="submit" border="10" value="Update Restaurant" class="form-control" />
-	</form>
-	<form action="delete.do" method="POST" class="form">
-		<input type="submit" border="10" value="Delete Nomination" class="form-control" />
-	</form>
+		<h1 align="center">2020 JAMES BEARD</h1>
+		<h3 align="center">Colorado Nominations</h3>
 
-	<table border="10" cellpadding="1">
-		<tr>
-			<th>ID</th>
-			<th>Nominated Year</th>
-			<th>Nomination Title</th>
-			<th>Name</th>
-			<th>Cuisine Type</th>
-			<th>Address</th>
-			<th>Chef/Hospitality Group</th>
-			<th>Website</th>
-		</tr>
-		<thead>
-		<tbody>
-			<c:forEach items="${restaurant}" var="restaurant">
-				<tr>
+		<form action="listAllNominations.do" method="GET" class="form">
+			<input type="submit" value="List All Nominations"
+				class="form-control" />
+		</form>
+		<form action="addRestaurant.do" method="POST" class="form">
+			<input type="submit" border="10" value="Add Restaurant"
+				class="form-control" />
+		</form>
 
-					<td>${restaurant.id}</td>
-					<td>${restaurant.nominatedYear}</td>
-					<td>${restaurant.nominationTitle}</td>
-					<td>${restaurant.name}</td>
-					<td>${restaurant.cuisineType}</td>
-					<td>${restaurant.address}</td>
-					<td>${restaurant.chefHospitalityGroup}</td>
-					<td><a href="${restaurant.website}">${restaurant.website}</a></td>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
+
+		<table border="10" cellpadding="1">
+			<tr>
+				<th>ID</th>
+				<th>Nominated Year</th>
+				<th>Nomination Title</th>
+				<th>Name</th>
+				<th>Cuisine Type</th>
+				<th>Address</th>
+				<th>Chef/Hospitality Group</th>
+				<th>Website</th>
+				<th>Modify</th>
+			</tr>
+			<thead>
+			<tbody>
+				<c:forEach items="${restaurant}" var="restaurant">
+					<tr>
+
+						<td>${restaurant.id}</td>
+						<td>${restaurant.nominatedYear}</td>
+						<td>${restaurant.nominationTitle}</td>
+						<td>${restaurant.name}</td>
+						<td>${restaurant.cuisineType}</td>
+						<td>${restaurant.address}</td>
+						<td>${restaurant.chefHospitalityGroup}</td>
+						<td><a href="${restaurant.website}">${restaurant.website}</a></td>
+						<td>
+							<form action="updateRestaurant.do?id=${restaurant.id}"
+								method="POST" class="form">
+								<input type="submit" border="10" value="Update Restaurant"
+									class="form-control" />
+							</form>
+							<form action="delete.do?restaurant=${restaurant.id }"
+								method="POST" class="form">
+								<input type="submit" border="10" value="Delete Nomination"
+									class="form-control" />
+							</form>
+						</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
 	</div>
+
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 		crossorigin="anonymous"></script>

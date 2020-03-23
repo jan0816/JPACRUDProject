@@ -6,37 +6,39 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Updating Restaurant</title>
 </head>
 <body>
 	<div align="center">
-		<form:form action="updateRestaurant.do" method="POST"
-			 modelAttribute="restaurant">
+		<form:form action="updateDisplay.do" method="post"
+			modelAttribute="restaurant">
 			<table border="8" cellpadding="20">
 				<tr>
 					<td>ID:</td>
-					<td>${restaurant.id} <form:hidden path ="id"/>
+					<td>${restaurant.id}<form:hidden path="id" /> <form:hidden
+							path="chefHospitalityGroup" /> <form:hidden path="cuisineType" />
 					</td>
 				</tr>
 				<tr>
 					<td>Nominated Year:</td>
-					<td>${restaurant.nominatedYear}</td>
+					<td><form:input path="nominatedYear" /></td>
 				</tr>
 				<tr>
 					<td>Nomination Title:</td>
-					<td>${restaurant.nominationTitle}</td>
+					<td><form:input path="nominationTitle" /></td>
 				</tr>
+
 				<tr>
 					<td>Name:</td>
-					<td>${restaurant.name}</td>
+					<td><form:input path="name" /></td>
 				</tr>
 				<tr>
 					<td>Address:</td>
-					<td>${restaurant.address}</td>
+					<td><form:input path="address" /></td>
 				</tr>
 				<tr>
 					<td>Website:</td>
-					<td>${restaurant.website}</td>
+					<td><form:input path="website" /></td>
 				</tr>
 				<tr>
 					<td colspan="2"><input type="submit" value="Updating"></td>
