@@ -13,15 +13,15 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class FoodTest {
+public class RestaurantTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Food food;
+	private Restaurant restaurant;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-		emf = Persistence.createEntityManagerFactory("FoodPU");
+		emf = Persistence.createEntityManagerFactory("JamesBeardPU");
 	}
 
 	@AfterAll
@@ -31,19 +31,25 @@ public class FoodTest {
 	}
 
 	@BeforeEach
-	void setUp() {
+	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		food = em.find(Food.class, 1);
+		restaurant = em.find(Restaurant.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		food = null;
+		restaurant = null;
 	}
 	@Test
-	void test_Food_entity_mappings() {
-		assertNotNull(food);
-		assertEquals("Uchi", food.getName());
+	void test_Restaurant_entity_mappings() {
+		assertNotNull(restaurant);
+		assertEquals("2020", restaurant.getNominatedYear());
+		assertEquals("Best New Restaurant", restaurant.getNominationTitle());
+		assertEquals("Sunday Vinyl", restaurant.getName());
+		assertEquals("European-style wine bar", restaurant.getCuisineType());
+		assertEquals("1803 16th Street, Denver, CO 80202", restaurant.getAddress());
+		assertEquals("Chef Lachlan Mackinnon-Patterson & Frasca Hospitality Group", restaurant.getChefHospitalityGroup());
+		assertEquals("https://www.sundayvinyl.com/", restaurant.getWebsite());
 	}
 }

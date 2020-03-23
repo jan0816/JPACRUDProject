@@ -4,13 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Foodies Unite</title>
+<title>Restaurant Deleted</title>
 </head>
 <body>
 
-
-<h1> Foodies Unite</h1>
-
-${food}
 </body>
 </html>
